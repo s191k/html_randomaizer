@@ -53,6 +53,9 @@ def index(request):
                 for cur_task in unsigned_tests:
                     res_text += cur_task
 
-            return render(request, 'gitlab_test_site/htmlpage.html', {'result':res_text} )
+            try:
+                return render(request, 'gitlab_test_site/htmlpage.html', {'result':res_text} )
+            except:
+                return render(request, 'gitlab_test_site/htmlpage.html', {'result': ' '})
     else:
         return render(request, 'gitlab_test_site/htmlpage.html', {'result':' '})

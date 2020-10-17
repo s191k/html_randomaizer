@@ -45,7 +45,7 @@ def index(request):
                 res_text += key + " :: \n"
                 for cur_task in res_map[key]:
                     res_text += " -- " + cur_task + "\n"
-                res_text += "---------------------\n"
+                res_text += "---------------------"
 
             if len(unsigned_tests) > 0:
 

@@ -15,23 +15,16 @@ def index(request):
     autors = request.POST.get('exampleFormControlTextarea2')
 
 
-    print(tasks)
-    print(autors)
-
     if tasks is not None and autors is not None:
+        print(tasks is not None and autors is not None)
         if tasks.strip() != '' and autors.strip() != '':
+            print(tasks.strip() != '' and autors.strip() != '')
             res_map, unsigned_tests = randomaizer_def(tasks, autors)
             res_text = ''
-            #
-            # if tasks.strip() != '' and autors.strip() != '':
-            #     tests_per_person = math.floor(len(tasks) / len(autors))
-            #     tests_left = len(tasks) - tests_per_person * len(autors)
-            #
 
 
             tasks = tasks.split('\n')
             autors = autors.split('\n')
-
             tests_per_person = math.floor(len(tasks) / len(autors))
             tests_left = len(tasks) - tests_per_person * len(autors)
 
@@ -53,9 +46,8 @@ def index(request):
                 for cur_task in unsigned_tests:
                     res_text += cur_task
 
-            try:
-                return render(request, 'gitlab_test_site/htmlpage.html', {'result':res_text} )
-            except:
-                return render(request, 'gitlab_test_site/htmlpage.html', {'result': ' '})
+            return render(request, 'gitlab_test_site/htmlpage.html', {'result':res_text} )
+        else:
+            return render(request, 'gitlab_test_site/htmlpage.html', {'result': ''})
     else:
-        return render(request, 'gitlab_test_site/htmlpage.html', {'result':' '})
+            return render(request, 'gitlab_test_site/htmlpage.html', {'result':''})

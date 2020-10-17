@@ -55,4 +55,4 @@ def index(request):
 
             return render(request, 'gitlab_test_site/htmlpage.html', {'result':res_text} )
     else:
-        return render(request, 'gitlab_test_site/htmlpage.html', {'result':''})
+        return render(request, 'gitlab_test_site/htmlpage.html', {'result':' '})

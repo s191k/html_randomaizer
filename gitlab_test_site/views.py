@@ -17,7 +17,7 @@ def index(request):
 
             res_map, unsigned_tests = randomaizer_def(tasks, autors)
             res_text = ''
-
+            res_text_for_excel = ''
 
             tests_per_person = math.floor(len(tasks) / len(autors))
             tests_left = len(tasks) - tests_per_person * len(autors)
@@ -37,12 +37,9 @@ def index(request):
                     res_text += " -- " + cur_task + "\n"
                 res_text += "---------------------\n"
 
-            # for key in res_map:
-            #     for cur_task in res_map[key]:
-            #         # print(key)
-            #         # print(cur_task)
-            #         print(cur_task.replace("\n",'') + " " + key + "\n")
-            #         res_text += cur_task.replace("\n",'') + " " + key + "\n"
+            for key in res_map:
+                for cur_task in res_map[key]:
+                    res_text_for_excel += cur_task + '	' + key + "\n"
 
             # print(res_text)
 
@@ -50,9 +47,10 @@ def index(request):
                 res_text += "---Нераскиданные тесты---\n"
                 for cur_task in unsigned_tests:
                     res_text += cur_task
+                    res_text_for_excel += cur_task
 
-            return render(request, 'gitlab_test_site/htmlpage.html', {'result':res_text} )
+            return render(request, 'gitlab_test_site/htmlpage.html', {'result':res_text, 'result_for_excel':res_text_for_excel} )
         else:
-            return render(request, 'gitlab_test_site/htmlpage.html', {'result': ''})
+            return render(request, 'gitlab_test_site/htmlpage.html', {'result': '', 'result_for_excel':''})
     else:
-            return render(request, 'gitlab_test_site/htmlpage.html', {'result':''})
+            return render(request, 'gitlab_test_site/htmlpage.html', {'result':'', 'result_for_excel':''})

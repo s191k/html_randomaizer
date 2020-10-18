@@ -35,11 +35,79 @@
                 <label>Имена авторов</label>
                 <textarea class="form-control" name="exampleFormControlTextarea2" rows="3"></textarea>
             </div>
-            <div class="form-group">
-                <label>Результат</label>
+             <div class="form-row">
+                <div class="col">
+                   <label>Результат(для чата)</label>
                 <textarea class="form-control" name="exampleFormControlTextarea3" rows="5">{{ result }}</textarea>
+                </div>
+                <div class="col">
+                    <label>Результат(Сразу для вставки в Excel)</label>
+                    <textarea class="form-control" name="exampleFormControlTextarea3" rows="5">{{ result_for_excel }}</textarea>
+                </div>
             </div>
+
             <button type="submit" class="btn btn-primary mb-2" name="sendButton">Отправить</button>
+
+            <div class="alert alert-success" role="alert">
+                Информация
+            </div>
+
+            <div>В имена тестов копируем поля из Excel::<br>
+                -- Для случая если мы хотим просто для чата - то копируем только названия(хотя можно и любые поля)<br>
+                Пример ::<br>
+                <br>
+                 <div class="alert alert-secondary" role="alert">
+                Название теста 1<br>
+                Название теста 2<br>
+                Название теста 3<br>
+                Название теста 4<br>
+                 </div>
+                -- Для случая если мы хотим сразу вставить в Excel - то копируем все строки до столбца Ответственный<br>
+                <div class="alert alert-secondary" role="alert">
+                [Стрим]	Название теста 1	0	0	0	0	0<br>
+                [Стрим]	Название теста 2	0	0	0	0	0<br>
+                [Стрим]	Название теста 3 	0	0	0	0	0<br>
+                [Стрим]	Название теста 4	0	0	0	0	0<br>
+                 </div>
+
+                В имена авторов также просто из Excel копируем всех участников::<br>
+                <div class="alert alert-secondary" role="alert">
+                Фамилия1<br>
+                Фамилия2<br>
+                Фамилия3<br>
+                Фамилия4<br>
+                 </div>
+
+                (Результаты в любом случае всегда выводятся в оба столбца - такая логика)<br>
+                Примеры результатов если для чата --<br>
+                <br>
+               <div class="alert alert-success" role="alert">
+                Количество тестов :: 4<br>
+                Количество участников :: 4<br>
+                Количество тестов на человека :: 1<br>
+                Количество нераспределенных тестов :: 0<br>
+                Фамилия1 ::<br>
+                 -- Название теста 4<br>
+                ---------------------<br>
+                Фамилия2 ::<br>
+                 -- Название теста 1<br>
+                ---------------------<br>
+                Фамилия3 ::<br>
+                 -- Название теста 3<br>
+                ---------------------<br>
+                Фамилия4 ::<br>
+                 -- Название теста 2<br>
+                ---------------------<br>
+               </div>
+                Примеры результатов если для excel(Результат можно вставить сразу в Excel) --<br>
+                <br>
+                 <div class="alert alert-success" role="alert">
+                [Стрим]	Название теста 3	0	0	0	0	0	Фамилия1<br>
+                [Стрим]	Название теста 4	0	0	0	0	0	Фамилия2<br>
+                [Стрим]	Название теста 1	0	0	0	0	0	Фамилия3<br>
+                [Стрим]	Название теста 2	0	0	0	0	0	Фамилия4<br>
+                 </div>
+            </div>
         </form>
     </body>
 </html>
